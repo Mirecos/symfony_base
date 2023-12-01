@@ -15,6 +15,7 @@ class Artist
 
     #[ORM\Column(length: 40)]
     private ?string $name = null;
+ 
 
     public function getId(): ?int
     {
