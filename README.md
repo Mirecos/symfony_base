@@ -11,12 +11,12 @@ Entity ALBUM (
     Musics : MUSIC[],  
     Artist : ARTIST,  
     Style : STYLE,  
-    Commentaries : COMMENTARY[]  
+    Fans : FAN[]  
  )  
 ALBUM -- OneToMany --> MUSIC  
 ALBUM -- ManyToOne --> ARTIST  
 ALBUM -- OneToOne --> STYLE  
-ALBUM -- ManyToMany --> COMMENTARY  
+ALBUM -- ManyToMany --> FAN  
   
 ### MUSIC
   
@@ -26,12 +26,11 @@ Entity MUSIC (
  )  
 MUSIC -- OneToMany --> ARTIST  
   
-### COMMENTARY
+### FAN
   
-Entity COMMENTARY (  
+Entity FAN (  
     id : number,  
-    message : string,  
-    rating : number  
+    username : string
 )  
   
 ### ARTIST
