@@ -22,7 +22,8 @@ ALBUM -- ManyToMany --> FAN
   
 Entity MUSIC (   
     id : number,  
-    titre : string  
+    titre : string,   
+    artist_id : number  
  )  
 MUSIC -- ManyToOne --> ARTIST  
   
@@ -37,9 +38,8 @@ Entity FAN (
   
 Entity ARTIST (  
     id : number,  
-    nom : string  
+    nom : string,  
 )  
-ARTIST -- OneToMany --> MUSIC  
 
 ### STYLE
   
