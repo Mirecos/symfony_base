@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use AlbumStatus;
 use App\Repository\AlbumRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -14,6 +15,10 @@ class Album
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+    
+    private ?AlbumStatus $status = null;
+
 
     #[ORM\OneToMany(mappedBy: 'album', targetEntity: Music::class)]
     private Collection $musics;
@@ -134,5 +139,15 @@ class Album
         return $this;
     }
 
+    public function getStatus(): ?AlbumStatus
+    {
+        return $this->status;
+    }
 
+    public function setStatus(?AlbumStatus $status): static
+    {
+        $this->status = $status;
+
+        return $this;
+    }
 }
