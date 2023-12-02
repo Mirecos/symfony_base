@@ -21,6 +21,11 @@ class Album
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $name = null;
 
+    #[ORM\ManyToOne]
+    private ?Style $style = null;
+
+
+
 
 
     public function __construct()
@@ -76,5 +81,18 @@ class Album
 
         return $this;
     }
+
+    public function getStyle(): ?Style
+    {
+        return $this->style;
+    }
+
+    public function setStyle(?Style $style): static
+    {
+        $this->style = $style;
+
+        return $this;
+    }
+
 
 }

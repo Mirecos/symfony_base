@@ -16,12 +16,13 @@ class MusicFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             ArtistFixtures::class,
+            AlbumFixtures::class
         ];
     }
     public function load(ObjectManager $manager): void
     {
         $musics = [
-            ["Look at me!", "XXXTentafion", "Look_at_me"],
+            ["Look at me!", "XXXTentafion", "Look at me"],
             ["Moonlight", "XXXTentafion", "?"],
             ["Arc-en-ciel", 'Hooba Booba', "GLAIVE"],
             ["GLAIVE", 'Hooba Booba', "GLAIVE"]

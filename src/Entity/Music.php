@@ -20,7 +20,9 @@ class Music
     private ?Artist $artist = null;
 
     #[ORM\ManyToOne(inversedBy: 'musics')]
-    private ?Album $album = null;
+    private ?Album $album = null ;
+
+
 
     public function getId(): ?int
     {
