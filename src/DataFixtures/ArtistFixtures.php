@@ -4,7 +4,6 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-
 use APP\Entity\Artist;
 
 class ArtistFixtures extends Fixture
@@ -15,16 +14,18 @@ class ArtistFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $Artists = [
-            'XXXTentafion',
-            'Freeze porcelaine',
-            'Lil baguette',
-            'Hooba Booba'
+            ['XXXTentafion', ["?", "Look_at_me"] ],
+            ['Lil baguette', [] ],
+            ['Hooba Booba', ["GLAIVE"] ]
         ];
-        foreach ($Artists as $key => $artistName) {
+        foreach ($Artists as $key => $artistdata) {
             $artist = new Artist();
-            $artist->setName($artistName);
+            $artist->setName($artistdata[0]);
+            // foreach ( $artistdata[1] as $key => $albumName){
+            //     $artist->addAlbum($this->getReference(AlbumFixtures::ALBUM_REFERENCE . $albumName));
+            // }
             $manager->persist($artist);
-            $ref = self::ARTIST_REFERENCE . $artistName;
+            $ref = self::ARTIST_REFERENCE . $artistdata[0];
             $this->addReference($ref, $artist);
         }
 

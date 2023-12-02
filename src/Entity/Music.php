@@ -19,6 +19,9 @@ class Music
     #[ORM\ManyToOne(targetEntity: Artist::class, inversedBy: 'id')]
     private ?Artist $artist = null;
 
+    #[ORM\ManyToOne(inversedBy: 'musics')]
+    private ?Album $album = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class Music
     public function setArtist(Artist $artist): static
     {
         $this->artist = $artist;
+
+        return $this;
+    }
+
+    public function getAlbum(): ?Album
+    {
+        return $this->album;
+    }
+
+    public function setAlbum(?Album $album): static
+    {
+        $this->album = $album;
 
         return $this;
     }
