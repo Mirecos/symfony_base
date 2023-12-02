@@ -15,7 +15,7 @@ Entity ALBUM (
  )  
 ALBUM -- OneToMany --> MUSIC  
 ALBUM -- ManyToOne --> ARTIST  
-ALBUM -- OneToOne --> STYLE  
+ALBUM -- ManyToOne --> STYLE  
 ALBUM -- ManyToMany --> FAN  
   
 ### MUSIC

@@ -24,13 +24,17 @@ class Album
     #[ORM\ManyToOne]
     private ?Style $style = null;
 
+    #[ORM\ManyToMany(targetEntity: Fan::class)]
+    private Collection $fans;
 
-
+    #[ORM\ManyToOne]
+    private ?Artist $artist = null;
 
 
     public function __construct()
     {
         $this->musics = new ArrayCollection();
+        $this->fans = new ArrayCollection();
     }
 
 
@@ -90,6 +94,42 @@ class Album
     public function setStyle(?Style $style): static
     {
         $this->style = $style;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Fan>
+     */
+    public function getFans(): Collection
+    {
+        return $this->fans;
+    }
+
+    public function addFan(Fan $fan): static
+    {
+        if (!$this->fans->contains($fan)) {
+            $this->fans->add($fan);
+        }
+
+        return $this;
+    }
+
+    public function removeFan(Fan $fan): static
+    {
+        $this->fans->removeElement($fan);
+
+        return $this;
+    }
+
+    public function getArtist(): ?Artist
+    {
+        return $this->artist;
+    }
+
+    public function setArtist(?Artist $artist): static
+    {
+        $this->artist = $artist;
 
         return $this;
     }

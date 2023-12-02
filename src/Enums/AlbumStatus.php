@@ -1,5 +1,5 @@
 <?php
-enum Status
+enum AlbumStatus
 {
     case Available;
     case Incoming;

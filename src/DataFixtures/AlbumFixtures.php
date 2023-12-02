@@ -23,14 +23,18 @@ class AlbumFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $Albums = [
-            ["Look at me", "Rock"],
-            ["?", "Rap"],
-            ["GLAIVE", "Rap"],
+            ["Look at me", "Rock", "XXXTentafion" ,["JP-47"]],
+            ["?", "Rap", "XXXTentafion" ,["Inspecteur gaydget"]],
+            ["GLAIVE", "Rap", "Hooba Booba", []],
         ];
         foreach ($Albums as $key => $albumData) {
             $album = new Album();
             $album->setName($albumData[0]);
             $album->setStyle( $this->getReference(StyleFixtures::STYLE_REFERENCE . $albumData[1]) );
+            $album->setArtist( $this->getReference(ArtistFixtures::ARTIST_REFERENCE . $albumData[2]) );
+            foreach($albumData[3] as $key => $user){
+                $album->addFan( $this->getReference(FanFixtures::FAN_REFERENCE . $user));
+            }
             $manager->persist($album);
 
             $ref = self::ALBUM_REFERENCE . $albumData[0];
