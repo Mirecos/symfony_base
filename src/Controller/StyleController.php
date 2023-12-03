@@ -25,22 +25,22 @@ class StyleController extends AbstractController
     }
 
     #[Route('/style/creation', name: 'app_style_creation', methods: ['GET', 'POST'])]
-public function creation(Request $request, EntityManagerInterface $em): Response
-{
-    $style = new Style();
-    $form = $this->createForm(StyleFormType::class, $style);
-    $form->handleRequest($request);
-    if ($form->isSubmitted() && $form->isValid()) {
-        $em->persist($style);
-        $em->flush();
- 
-        $this->addFlash('success', 'Style créé!');
-        return $this->redirectToRoute('app_style');
+    public function creation(Request $request, EntityManagerInterface $em): Response
+    {
+        $style = new Style();
+        $form = $this->createForm(StyleFormType::class, $style);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($style);
+            $em->flush();
+    
+            $this->addFlash('success', 'Style créé!');
+            return $this->redirectToRoute('app_style');
+        }
+    
+        return $this->render('style/ajout_style.html.twig', [
+            'style' => $style,
+            'form' => $form->createView()
+        ]);
     }
- 
-    return $this->render('style/ajout_style.html.twig', [
-        'style' => $style,
-        'form' => $form->createView()
-    ]);
-}
 }
