@@ -40,6 +40,16 @@
                     <li class="nav-item">
                         <a class="nav-link link" href="{{ path('app_style') }}">Styles</a>
                     </li>
+
+                    {% if app.user != null %}
+                        <li>
+                            <a class="nav-link link" href="{{ path('app_logout') }}">Logout</a>
+                        </li>
+                    {% else %}
+                    <li  class="nav-item">
+                        <a class="nav-link link" href="{{ path('app_security') }}">Connect</a>
+                    <li>
+                    {% endif %}
                 </ul>
                 </div>
             </nav>
