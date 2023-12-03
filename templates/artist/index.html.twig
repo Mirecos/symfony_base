@@ -9,12 +9,10 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
     <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/Symfony/symfony_base/src/Controller/ArtistController.php'|file_link(0) }}">src/Controller/ArtistController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/Symfony/symfony_base/templates/artist/index.html.twig'|file_link(0) }}">templates/artist/index.html.twig</a></code></li>
+        {% for artist in artists %}
+            <li> {{ artist.name }} </li>
+        {% endfor %}
     </ul>
 </div>
 {% endblock %}

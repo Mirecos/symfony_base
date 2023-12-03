@@ -35,6 +35,9 @@ class Album
     #[ORM\ManyToOne]
     private ?Artist $artist = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
 
     public function __construct()
     {
@@ -147,6 +150,18 @@ class Album
     public function setStatus(?AlbumStatus $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
