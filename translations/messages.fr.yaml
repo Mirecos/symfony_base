@@ -1,2 +1,20 @@
-Hello: __Hello
-Add a Music: Ajouter une musique
+Hello: Bonjour
+Add:
+  a:
+    Music: 'Ajouter une Musique'
+    Cover: 'Ajouter une Cover'
+    Fan: 'Ajouter un fan'
+    Style: 'Ajouter une Style'
+  an:
+    Album: 'Ajouter un Album'
+    Artist: 'Ajouter un Artiste'
+
+Artist: Artist
+Cover: Cover
+Fan: Fan
+Music: Music
+Style: Style
+Users: Users
+Available: Disponible
+Not available: Non disponible
+from: de

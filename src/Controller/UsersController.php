@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UsersController extends AbstractController
 {
-    #[Route('/users', name: 'app_users')]
+    #[Route('/{_locale}/users', name: 'app_users', requirements:['_locale'=>'en|fr'])]
     public function index(): Response
     {
         return $this->render('users/index.html.twig', [

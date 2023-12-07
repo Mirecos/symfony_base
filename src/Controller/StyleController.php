@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class StyleController extends AbstractController
 {
-    #[Route('/style', name: 'app_style')]
+    #[Route('/{_locale}/style', name: 'app_style', requirements:['_locale'=>'en|fr'])]
     public function index(StyleRepository $styleRepository): Response
     {
         $styles = $styleRepository->findAll();
@@ -24,7 +24,7 @@ class StyleController extends AbstractController
         ]);
     }
 
-    #[Route('/style/creation', name: 'app_style_creation', methods: ['GET', 'POST'])]
+    #[Route('/{_locale}/style/creation', name: 'app_style_creation', methods: ['GET', 'POST'], requirements:['_locale'=>'en|fr'])]
     public function creation(Request $request, EntityManagerInterface $em): Response
     {
         $style = new Style();

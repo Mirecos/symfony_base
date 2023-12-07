@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AlbumController extends AbstractController
 {
 
-    #[Route('/album', name: 'app_album')]
+    #[Route('/{_locale}/album', name: 'app_album', requirements:['_locale'=>'en|fr'])]
     public function index(AlbumRepository $albumRepository): Response
     {
         $albums = $albumRepository->findAll();
@@ -25,7 +25,7 @@ class AlbumController extends AbstractController
         ]);
     }
 
-    #[Route('/album/creation', name: 'app_album_creation', methods: ['GET', 'POST'])]
+    #[Route('/{_locale}/album/creation', name: 'app_album_creation', methods: ['GET', 'POST'], requirements:['_locale'=>'en|fr'])]
     public function creation(Request $request, EntityManagerInterface $em): Response
     {
         $album = new Album();

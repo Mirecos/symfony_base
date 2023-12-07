@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CoverController extends AbstractController
 {
-    #[Route('/cover', name: 'app_cover')]
+    #[Route('/{_locale}/cover', name: 'app_cover', requirements:['_locale'=>'en|fr'])]
     public function index(CoverRepository $coverRepository): Response
     {
 
@@ -25,7 +25,7 @@ class CoverController extends AbstractController
         ]);
     }
 
-    #[Route('/cover/creation', name: 'app_cover_creation', methods: ['GET', 'POST'])]
+    #[Route('/{_locale}/cover/creation', name: 'app_cover_creation', methods: ['GET', 'POST'], requirements:['_locale'=>'en|fr'])]
     public function creation(Request $request, EntityManagerInterface $em): Response
     {
         $cover = new Cover();

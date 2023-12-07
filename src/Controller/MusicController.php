@@ -13,11 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MusicController extends AbstractController
 {
-    #[Route('/{_locale}/music', name: 'app_music', requirements:['_locale'=>'en|fr|de'])]
+    #[Route('/{_locale}/music', name: 'app_music', requirements:['_locale'=>'en|fr'])]
     public function index(Request $request, MusicRepository $musicRepository): Response
     {
-        $locale = $request->getLocale();
-        var_dump($locale);
 
         $musics = $musicRepository->findAll();
 
@@ -27,7 +25,7 @@ class MusicController extends AbstractController
         ]);
     }
 
-    #[Route('/music/creation', name: 'app_music_creation', methods: ['GET', 'POST'])]
+    #[Route('/{_locale}/music/creation', name: 'app_music_creation', methods: ['GET', 'POST'], requirements:['_locale'=>'en|fr'])]
     public function creation(Request $request, EntityManagerInterface $em): Response
     {
 

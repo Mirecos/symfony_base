@@ -1,0 +1,17 @@
+Hello: Hello
+Add:
+  a:
+    Music: 'Add a Music'
+    Cover: 'Add a Cover'
+    Fan: 'Add a Fan'
+    Style: 'Add a Style'
+  an:
+    Album: 'Add an Album'
+    Artist: 'Add an Artist'
+
+Artist: Artist
+Cover: Cover
+Fan: Fan
+Music: Music
+Style: Style
+Users: Users

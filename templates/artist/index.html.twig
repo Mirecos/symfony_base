@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ArtistController!{% endblock %}
+{% block title %}{% trans %}Artist{% endtrans %}{% endblock %}
 
 {% block body %}
-<a href="{{ path('app_artist_creation') }}">Add an artist</a>
+<a href="{{ path('app_artist_creation') }}">{% trans %}Add.an.Artist{% endtrans %}</a>
 <ul>
     {% for artist in artists %}
         <li> {{ artist.name }} </li>

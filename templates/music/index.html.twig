@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MusicController!{% endblock %}
+{% block title %}{% trans %}Music{% endtrans %}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_music_creation') }}">{% trans %}Add a Music{% endtrans %}</a>
+    <a href="{{ path('app_music_creation') }}">{% trans %}Add.a.Music{% endtrans %}</a>
     <ul>
         {% for music in musics %}
             <li> {{ music.title }} </li>

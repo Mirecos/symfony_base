@@ -1,16 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AlbumController!{% endblock %}
+{% block title %}{% trans %}Artist{% endtrans %}{% endblock %}
 
 {% block body %}
-<a href="{{ path('app_album_creation') }}">Add an album</a>
+<a href="{{ path('app_album_creation') }}">{% trans %}Add.an.Album{% endtrans %}</a>
 <div class="d-flex flex-row flex-wrap justify-content-around m-4">
         {% for album in albums %}
             <div class="card text-dark bg-dark" style="width:15%; margin-bottom:12px;">
                 <img class="card-img-top " style="width:100%; margin:auto; " src={{album.cover.link}} alt="Card image cap">
                 <div class="card-body">
                     <p class="card-text" style="color:gray;">{{album.name}}</p>
-                    <p class="card-text" style="color:gray;">From the artist {{album.artist.name}}</p>
+                    <p class="card-text" style="color:gray;">{% trans %}from{% endtrans %} {{album.artist.name}}</p>
+                    {% if album.status.value == "Available" %}
+                        <div style="color:green;">
+                        {% trans %}Available{% endtrans %}
+                        <span class="material-symbols-outlined">
+                        done
+                        </span>
+                    </div>
+                    {% elseif album.status.value == "Not Available" %}
+                    <div style="color:red;">
+                        {% trans %}Not available{% endtrans %}
+                        <span class="material-symbols-outlined">
+                        close
+                        </span>
+                    </div>
+                    {% elseif album.status.value == "Incoming" %}
+                    <div style="color:orange;">
+                        {% trans %}Incoming{% endtrans %}
+                        <span class="material-symbols-outlined">
+                        Schedule
+                        </span>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}

@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class FanController extends AbstractController
 {
-    #[Route('/fan', name: 'app_fan')]
+    #[Route('/{_locale}/fan', name: 'app_fan', requirements:['_locale'=>'en|fr'])]
     public function index(FanRepository $fanRepository): Response
     {
         $fans = $fanRepository->findAll();
@@ -24,7 +24,7 @@ class FanController extends AbstractController
         ]);
     }
 
-    #[Route('/fan/creation', name: 'app_fan_creation', methods: ['GET', 'POST'])]
+    #[Route('/{_locale}/fan/creation', name: 'app_fan_creation', methods: ['GET', 'POST'], requirements:['_locale'=>'en|fr'])]
     public function creation(Request $request, EntityManagerInterface $em): Response
     {
         $fan = new Fan();

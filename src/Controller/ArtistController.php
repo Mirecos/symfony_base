@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArtistController extends AbstractController
 {
-    #[Route('/artist', name: 'app_artist')]
+    #[Route('/{_locale}/artist', name: 'app_artist', requirements:['_locale'=>'en|fr'])]
     public function index(ArtistRepository $artistRepository): Response
     {
         $artists = $artistRepository->findAll();
@@ -24,7 +24,7 @@ class ArtistController extends AbstractController
         ]);
     }
 
-    #[Route('/artist/creation', name: 'app_artist_creation', methods: ['GET', 'POST'])]
+    #[Route('/{_locale}/artist/creation', name: 'app_artist_creation', methods: ['GET', 'POST'], requirements:['_locale'=>'en|fr'])]
     public function creation(Request $request, EntityManagerInterface $em): Response
     {
         $artist = new Artist();

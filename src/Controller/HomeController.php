@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'app_home')]
+    #[Route('/{_locale}/home', name: 'app_home', requirements:['_locale'=>'en|fr'])]
     public function index(AlbumRepository $albumRepository): Response
     {
         $AvailableCount = 0;

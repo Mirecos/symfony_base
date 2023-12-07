@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FanController!{% endblock %}
+{% block title %}{% trans %}Fan{% endtrans %}{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_fan_creation') }}">Add a fan !</a>
+    <a href="{{ path('app_fan_creation') }}">{% trans %}Add.a.Fan{% endtrans %}</a>
     <ul>
         {% for fan in fans %}
             <li> {{ fan.username }} </li>
