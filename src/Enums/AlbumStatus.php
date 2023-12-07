@@ -1,8 +1,11 @@
 <?php
-enum AlbumStatus
+
+namespace App\Enum;
+
+enum AlbumStatus : string
 {
-    case Available;
-    case Incoming;
-    case NotAvailable;
+    case Available = "Available";
+    case Incoming = "Incoming";
+    case NotAvailable = "Not Available";
 
 }

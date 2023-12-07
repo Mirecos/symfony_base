@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CoverController!{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_cover_creation') }}">Add a cover !</a>
+    <ul>
+        {% for cover in covers %}
+            <li> {{ cover.albumName }} </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

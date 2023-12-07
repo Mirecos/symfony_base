@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use AlbumStatus;
+
+use App\Enum\AlbumStatus;
 use App\Repository\AlbumRepository;
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\ArrayCollection;    
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,10 +17,10 @@ class Album
     #[ORM\Column]
     private ?int $id = null;
 
-    
+    #[ORM\Column(length: 30, enumType: AlbumStatus::class)]
     private ?AlbumStatus $status = null;
 
-
+    
     #[ORM\OneToMany(mappedBy: 'album', targetEntity: Music::class)]
     private Collection $musics;
 
@@ -35,8 +36,8 @@ class Album
     #[ORM\ManyToOne]
     private ?Artist $artist = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Cover $Cover = null;
 
 
     public function __construct()
@@ -154,14 +155,14 @@ class Album
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getCover(): ?Cover
     {
-        return $this->image;
+        return $this->Cover;
     }
 
-    public function setImage(?string $image): static
+    public function setCover(?Cover $Cover): static
     {
-        $this->image = $image;
+        $this->Cover = $Cover;
 
         return $this;
     }

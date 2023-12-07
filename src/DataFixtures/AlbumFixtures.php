@@ -2,8 +2,9 @@
 
 namespace App\DataFixtures;
 
-use AlbumStatus;
+
 use App\Entity\Album;
+use App\Enum\AlbumStatus;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -17,23 +18,24 @@ class AlbumFixtures extends Fixture implements DependentFixtureInterface
         return [
             StyleFixtures::class,
             ArtistFixtures::class,
-            FanFixtures::class
+            FanFixtures::class,
+            CoverFixtures::class
         ];
     }
 
     public function load(ObjectManager $manager): void
     {
         $Albums = [
-            ["Look at me", "Rock", "XXXTentafion" ,["JP-47"], AlbumStatus::Available, "https://e-cdn-images.dzcdn.net/images/cover/52b1deb1b8200691f68bb5faf84c6f31/500x500-000000-80-0-0.jpg"],
-            ["?", "Rap", "XXXTentafion" ,["Inspecteur gaydget"], AlbumStatus::Incoming, "https://e-cdn-images.dzcdn.net/images/cover/9b6da786cd3ca8b286a04186b3c9079c/500x500-000000-80-0-0.jpg"],
-            ["GLAIVE", "Rap", "Hooba Booba", [], AlbumStatus::Available, "https://e-cdn-images.dzcdn.net/images/cover/5ae761b7a0c5b89910dc8c320265de7b/500x500-000000-80-0-0.jpg"],
-            ["Look at me2", "Rock", "XXXTentafion" ,["JP-47"], AlbumStatus::Available, "https://e-cdn-images.dzcdn.net/images/cover/52b1deb1b8200691f68bb5faf84c6f31/500x500-000000-80-0-0.jpg"],
+            ["Look at me", "Rock", "XXXTentafion" ,["JP-47"], AlbumStatus::Available],
+            ["?", "Rap", "XXXTentafion" ,["Inspecteur gaydget"], AlbumStatus::Incoming],
+            ["GLAIVE", "Rap", "Hooba Booba", [], AlbumStatus::Available],
+            ["Look at me2", "Rock", "XXXTentafion" ,["JP-47"], AlbumStatus::Available],
 
-            ["Look at me3", "Rock", "XXXTentafion" ,["JP-47"], AlbumStatus::Available, "https://e-cdn-images.dzcdn.net/images/cover/52b1deb1b8200691f68bb5faf84c6f31/500x500-000000-80-0-0.jpg"],
+            ["Look at me3", "Rock", "XXXTentafion" ,["JP-47"], AlbumStatus::Available],
 
-            ["Look at me4", "Rock", "XXXTentafion" ,["JP-47"], AlbumStatus::Available, "https://e-cdn-images.dzcdn.net/images/cover/52b1deb1b8200691f68bb5faf84c6f31/500x500-000000-80-0-0.jpg"],
+            ["Look at me4", "Rock", "XXXTentafion" ,["JP-47"], AlbumStatus::Available],
 
-            ["Look at me5", "Rock", "XXXTentafion" ,["JP-47"], AlbumStatus::Available, "https://e-cdn-images.dzcdn.net/images/cover/52b1deb1b8200691f68bb5faf84c6f31/500x500-000000-80-0-0.jpg"],
+            ["Look at me5", "Rock", "XXXTentafion" ,["JP-47"], AlbumStatus::Available],
 
         ];
 
@@ -42,8 +44,9 @@ class AlbumFixtures extends Fixture implements DependentFixtureInterface
             $album->setName($albumData[0]);
             $album->setStyle( $this->getReference(StyleFixtures::STYLE_REFERENCE . $albumData[1]) );
             $album->setArtist( $this->getReference(ArtistFixtures::ARTIST_REFERENCE . $albumData[2]) );
+            $album->setStatus($albumData[4]);
             $album->setStatus( $albumData[4] );
-            $album->setImage($albumData[5]);
+            $album->setCover( $this->getReference(CoverFixtures::COVER_REFERENCE . $albumData[0]) );
             foreach($albumData[3] as $key => $user){
                 $album->addFan( $this->getReference(FanFixtures::FAN_REFERENCE . $user));
             }

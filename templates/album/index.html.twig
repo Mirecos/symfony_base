@@ -3,12 +3,13 @@
 {% block title %}Hello AlbumController!{% endblock %}
 
 {% block body %}
+<a href="{{ path('app_album_creation') }}">Add an album</a>
 <div class="d-flex flex-row flex-wrap justify-content-around m-4">
         {% for album in albums %}
             <div class="card text-dark bg-dark" style="width:15%; margin-bottom:12px;">
-                <img class="card-img-top " style="width:95%; margin:auto; margin-top:20px;" src={{album.image}} alt="Card image cap">
+                <img class="card-img-top " style="width:100%; margin:auto; " src={{album.cover.link}} alt="Card image cap">
                 <div class="card-body">
-*
+                    <p class="card-text" style="color:gray;">{{album.name}}</p>
                     <p class="card-text" style="color:gray;">From the artist {{album.artist.name}}</p>
                 </div>
             </div>

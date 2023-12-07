@@ -3,11 +3,52 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<div>
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <h1>Hello {{ app.user.email }}! ✅</h1>
-    {% else %}
-        <h1>You are not connected </h1>
-    {% endif %}
+<h2>Demander au prof : -Au secours les traductions ? - Faut-t-il une page d'inscription ?(accessible a tout le monde)</h2>
+
+<h2> Ma todo : - Ajouter le status sur les card - ajouter la traduction</h2>
+<div style="">
+    <div style="width:100%;display:flex;justify-content:space-evenly;padding-top:20px;padding-bottom:20px;background-color:gray;">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <h1>{% trans %}Hello{% endtrans %} {{ app.user.email }}! ✅</h1>
+        {% else %}
+            <h1>On dirait que tu n'es pas connecté ? Passe faire un tour <a  href="{{ path('app_security') }}">ici</a> ! </h1>
+        {% endif %}
+    </div>
+    
+
+    <div style="margin-top:15px;margin-top:15px;">
+        <h2>Quelques statistiques 📈📈:</h2>
+        <div style="width:100%;display:flex;flex-direction:row;justify-content:space-evenly;margin-top:1%;">
+            <div style="padding:1%;background-color:gray;border-radius:4%;">
+                <h5>Nombre d'albums disponible</h5>
+                <h3 style="display:flex;justify-content:center;font-weight: bold;">{{ availableCount }}</h3>
+                <h3 style="display:flex;justify-content:center;font-weight: bold;">Soit {{ (availableCount / totalCount * 100) | number_format(0) }}%</h3>
+            </div>
+            <div style="padding:1%;background-color:gray;border-radius:4%;">
+                <h5>Nombre d'albums non disponible</h5>
+                <h3 style="display:flex;justify-content:center;font-weight: bold;">{{ notAvailableCount }}</h3>
+                <h3 style="display:flex;justify-content:center;font-weight: bold;">Soit {{ (notAvailableCount / totalCount * 100) | number_format(0) }}%</h3>
+            </div>
+            <div style="padding:1%;background-color:gray;border-radius:4%;">
+                <h5>Nombre d'albums bientot disponible</h5>
+                <h3 style="display:flex;justify-content:center;font-weight: bold;">{{ incomingCount }}</h3>
+                <h3 style="display:flex;justify-content:center;font-weight: bold;">Soit {{ (incomingCount / totalCount * 100) | number_format(0)}}%</h3>
+            </div>
+        </div>
+    </div>
+
+    <h2 style="margin-top:15px;margin-top:15px;">Les 5 derniers albums :</h2>
+    <div class="d-flex flex-row flex-wrap justify-content-around m-4">
+        
+        {% for album in lastAlbums %}
+            <div class="card text-dark bg-dark" style="width:15%; margin-bottom:12px;">
+                <img class="card-img-top " style="width:100%; margin:auto; " src={{album.cover.link}} alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text" style="color:gray;">{{album.name}}</p>
+                    <p class="card-text" style="color:gray;">From the artist {{album.artist.name}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
