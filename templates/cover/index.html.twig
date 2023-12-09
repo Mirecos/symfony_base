@@ -4,9 +4,18 @@
 
 {% block body %}
     <a href="{{ path('app_cover_creation') }}">{% trans %}Add.a.Cover{% endtrans %}</a>
-    <ul>
+    <div class="d-flex flex-row flex-wrap m-4" style="justify-content: space-evenly;">
         {% for cover in covers %}
-            <li> {{ cover.albumName }} </li>
+            <div class="card text-dark bg-dark" style="width:15%; margin-bottom:12px;">
+                <img class="card-img-top " style="width:100%; margin:auto; " src={{cover.link}} alt="Card image cap">
+                <div class="card-body">
+                	<p style="color:gray;">
+                    Cover 
+                    {% trans %}from{% endtrans %} 
+                    <h3 style="color:white;">{{ cover.albumName }}</h3>
+                    </p>
+				</div>
+            </div>
         {% endfor %}
-    </ul>
+</div>
 {% endblock %}

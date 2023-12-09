@@ -1,12 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} | {% trans %}Artist{% endtrans %}{% endblock %}
+{% block title %}
+	{{ parent() }}
+	|
+	{% trans %}Artist{% endtrans %}
+{% endblock %}
 
 {% block body %}
-<a href="{{ path('app_artist_creation') }}">{% trans %}Add.an.Artist{% endtrans %}</a>
-<ul>
-    {% for artist in artists %}
-        <li> {{ artist.name }} </li>
-    {% endfor %}
-</ul>
+	<a href="{{ path('app_artist_creation') }}">{% trans %}Add.an.Artist{% endtrans %}</a>
+	<div class="d-flex flex-row flex-wrap m-4" style="justify-content: space-evenly;">
+		{% for artist in artists %}
+			<div class="card text-dark bg-dark" style="width:15%; margin-bottom:12px;">
+				<div class="card-body">
+                    <h3 style="color:gray;">{% trans %}Artist{% endtrans %} - {{ artist.id }}</h3>
+                    <h3 style="color:white;">{{ artist.name }}</h3>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}

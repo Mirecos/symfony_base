@@ -1,13 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} | {% trans %}Music{% endtrans %}{% endblock %}
+{% block title %}
+	{{ parent() }}
+	|
+	{% trans %}Music{% endtrans %}
+{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_music_creation') }}">{% trans %}Add.a.Music{% endtrans %}</a>
-    <ul>
-        {% for music in musics %}
-            <li> {{ music.title }} </li>
-        {% endfor %}
-    </ul>
+	<a href="{{ path('app_music_creation') }}">{% trans %}Add.a.Music{% endtrans %}</a>
+
+	<div class="d-flex flex-row flex-wrap m-4" style="justify-content: space-evenly;">
+		{% for music in musics %}
+			<div class="card text-dark bg-dark" style="width:18%; margin-bottom:12px;">
+			<img class="card-img-top " style="width:100%; margin:auto; " src={{music.album.cover.link}} alt="Card image cap">
+				<div class="card-body">
+                	<h3 style="color:white;">{{ music.title }}</h3>
+					<h3 style="color:gray;">{% trans %}Album{% endtrans %}: {{ music.album.name }}</h3>
+					<h3 style="color:gray;">{% trans %}from{% endtrans %} {{ music.artist.name }}</h3>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 
 {% endblock %}

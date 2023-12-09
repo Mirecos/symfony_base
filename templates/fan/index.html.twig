@@ -4,10 +4,14 @@
 
 {% block body %}
     <a href="{{ path('app_fan_creation') }}">{% trans %}Add.a.Fan{% endtrans %}</a>
-    <ul>
-        {% for fan in fans %}
-            <li> {{ fan.username }} </li>
-        {% endfor %}
-    </ul>
+    <div class="d-flex flex-row flex-wrap m-4" style="justify-content: space-evenly;">
+		{% for fan in fans %}
+			<div class="card text-dark bg-dark" style="width:18%; margin-bottom:12px;">
+				<div class="card-body">
+                	<h3 style="color:white;">{{ fan.username }}</h3>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 
 {% endblock %}

@@ -3,12 +3,14 @@
 {% block title %}{{ parent() }} | {% trans %}Style{% endtrans %}{% endblock %}
 
 {% block body %}
-<div class="example-wrapper">
     <a href="{{ path('app_style_creation') }}">{% trans %}Add.a.Style{% endtrans %}</a>
-    <ul>
-        {% for style in styles %}
-            <li> {{ style.name }} </li>
-        {% endfor %}
-    </ul>
-</div>
+    <div class="d-flex flex-row flex-wrap m-4" style="justify-content: space-evenly;">
+		{% for style in styles %}
+			<div class="card text-dark bg-dark" style="width:18%; margin-bottom:12px;">
+				<div class="card-body">
+                	<h3 style="color:white;">{{ style.name }}</h3>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}
