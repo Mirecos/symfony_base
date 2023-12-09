@@ -18,6 +18,7 @@ Users: Users
 Album: Album
 Available: Available
 Not available: Not available
+Incoming: Incoming
 from: from 
 Login: Connection
 Albums: Albums
@@ -27,5 +28,20 @@ Fans: Fans
 Covers: Covers
 Styles: Styles
 Logout: Logout
-Connect: Connect
+Connect: Log in
 Home: Home
+connected.message: Looks like you are not connected ? Come 
+here: here
+Statistic.header: Some statistics -
+nb:
+  album:
+    disponible: Number of albums available
+    soon:
+      disponible: Number of incoming albums
+    not:
+      disponible: Number of albums not available 
+equiv: equals to
+last:
+  albums: Last 5 albums -
+fr: French
+en: English

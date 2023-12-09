@@ -6,7 +6,7 @@
     <a href="{{ path('app_cover_creation') }}">{% trans %}Add.a.Cover{% endtrans %}</a>
     <div class="d-flex flex-row flex-wrap m-4" style="justify-content: space-evenly;">
         {% for cover in covers %}
-            <div class="card text-dark bg-dark" style="width:15%; margin-bottom:12px;">
+            <div class="card text-dark" style="width:15%; margin-bottom:12px;background-color:#222222;">
                 <img class="card-img-top " style="width:100%; margin:auto; " src={{cover.link}} alt="Card image cap">
                 <div class="card-body">
                 	<p style="color:gray;">

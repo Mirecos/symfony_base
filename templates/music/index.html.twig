@@ -11,7 +11,7 @@
 
 	<div class="d-flex flex-row flex-wrap m-4" style="justify-content: space-evenly;">
 		{% for music in musics %}
-			<div class="card text-dark bg-dark" style="width:18%; margin-bottom:12px;">
+			<div class="card text-dark" style="width:18%; margin-bottom:12px;background-color:#222222;">
 			<img class="card-img-top " style="width:100%; margin:auto; " src={{music.album.cover.link}} alt="Card image cap">
 				<div class="card-body">
                 	<h3 style="color:white;">{{ music.title }}</h3>
