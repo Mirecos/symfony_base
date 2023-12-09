@@ -12,9 +12,20 @@ Add:
 Artist: Artist
 Cover: Cover
 Fan: Fan
-Music: Music
+Music: Musique
 Style: Style
 Users: Users
+Album: Album
 Available: Disponible
 Not available: Non disponible
 from: de
+Login: Connexion
+Albums: Albums
+Artists: Artistes
+Musics: Musiques
+Fans: Fans
+Covers: Covers
+Styles: Styles
+Logout: Déconnexion
+Connect: Connection
+Home: Accueil

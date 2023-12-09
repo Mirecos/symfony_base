@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SecurityController!{% endblock %}
+{% block title %}{{ parent() }} | {% trans %}Login{% endtrans %}{% endblock %}
 
 {% block body %}
 <style>
@@ -18,9 +18,9 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="_password">
 
-        <input type="hidden" name="_target_path" value="/home"> 
+        <input type="hidden" name="_target_path" value="/en/home"> 
 
-        <button class="custonButton" type="submit">Login to spotifiak</button>
+        <button class="custonButton" style="margin-top:10%;" type="submit">Login to spotifiak</button>
     </form>
     {% endif %}
 

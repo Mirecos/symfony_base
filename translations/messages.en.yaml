@@ -1,13 +1,13 @@
 Hello: Hello
 Add:
   a:
-    Music: 'Add a Music'
-    Cover: 'Add a Cover'
-    Fan: 'Add a Fan'
-    Style: 'Add a Style'
+    Music: 'Add a music'
+    Cover: 'Add a cover'
+    Fan: 'Add a fan'
+    Style: 'Add a style'
   an:
-    Album: 'Add an Album'
-    Artist: 'Add an Artist'
+    Album: 'Add an album'
+    Artist: 'Add an artist'
 
 Artist: Artist
 Cover: Cover
@@ -15,3 +15,17 @@ Fan: Fan
 Music: Music
 Style: Style
 Users: Users
+Album: Album
+Available: Available
+Not available: Not available
+from: from 
+Login: Connection
+Albums: Albums
+Artists: Artists
+Musics: Musics
+Fans: Fans
+Covers: Covers
+Styles: Styles
+Logout: Logout
+Connect: Connect
+Home: Home

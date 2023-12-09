@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}{{ parent() }} | {% trans %}Home{% endtrans %}{% endblock %}
 
 {% block body %}
 <div style="">
@@ -43,14 +43,28 @@
                 <div class="card-body" style="color:gray;">
                     <p class="card-text">{{album.name}}</p>
                     <p class="card-text">From the artist {{album.artist.name}}</p>
-                    <p>
-                        {% if album.status.value == "Available" %}
-                            ✅
-                        {% else %}
-                            cross
-                        {% endif %}
-                        
-                    </p>
+                                        {% if album.status.value == "Available" %}
+                    <div style="color:green;">
+                        {% trans %}Available{% endtrans %}
+                        <span class="material-symbols-outlined">
+                        done
+                        </span>
+                    </div>
+                    {% elseif album.status.value == "Not Available" %}
+                    <div style="color:red;">
+                        {% trans %}Not available{% endtrans %}
+                        <span class="material-symbols-outlined">
+                        close
+                        </span>
+                    </div>
+                    {% elseif album.status.value == "Incoming" %}
+                    <div style="color:orange;">
+                        {% trans %}Incoming{% endtrans %}
+                        <span class="material-symbols-outlined">
+                        Schedule
+                        </span>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}

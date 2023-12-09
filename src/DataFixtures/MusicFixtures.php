@@ -22,10 +22,11 @@ class MusicFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $musics = [
-            ["Look at me!", "XXXTentafion", "Look at me"],
-            ["Moonlight", "XXXTentafion", "?"],
-            ["Arc-en-ciel", 'Hooba Booba', "GLAIVE"],
-            ["GLAIVE", 'Hooba Booba', "GLAIVE"]
+            ["Look at me!", "XXXTentacion", "Look at me"],
+            ["Moonlight", "XXXTentacion", "?"],
+            ["bad vibes forever", "XXXTentacion", "Bad Vibes Forever"],
+            ["SAD!", "XXXTentacion", "?"],
+            ["changes", "XXXTentacion", "?"],
         ];
         foreach ($musics as $key => $musicData) {
             $music = new Music();

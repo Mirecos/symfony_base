@@ -26,16 +26,13 @@ class AlbumFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $Albums = [
-            ["Look at me", "Rock", "XXXTentafion" ,["JP-47"], AlbumStatus::Available],
-            ["?", "Rap", "XXXTentafion" ,["Inspecteur gaydget"], AlbumStatus::Incoming],
-            ["GLAIVE", "Rap", "Hooba Booba", [], AlbumStatus::Available],
-            ["Look at me2", "Rock", "XXXTentafion" ,["JP-47"], AlbumStatus::Available],
-
-            ["Look at me3", "Rock", "XXXTentafion" ,["JP-47"], AlbumStatus::Available],
-
-            ["Look at me4", "Rock", "XXXTentafion" ,["JP-47"], AlbumStatus::Available],
-
-            ["Look at me5", "Rock", "XXXTentafion" ,["JP-47"], AlbumStatus::Available],
+            ["Look at me", "Rock", "XXXTentacion" ,["JP-47"], AlbumStatus::NotAvailable],
+            ["?", "Rap", "XXXTentacion" ,["Inspecteur gaydget"], AlbumStatus::Available],
+            ["Riot", "Rap", "XXXTentacion", [], AlbumStatus::Available],
+            ["Bad Vibes Forever", "Pop", "XXXTentacion" ,["JP-47"], AlbumStatus::Available],
+            ["SKINS", "Rap", "XXXTentacion" ,["JP-47"], AlbumStatus::Incoming],
+            ["Revenge", "Rock", "XXXTentacion" ,["JP-47"], AlbumStatus::Available],
+            ["17", "Rap", "XXXTentacion" ,["JP-47"], AlbumStatus::Incoming],
 
         ];
 

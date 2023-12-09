@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% trans %}Cover{% endtrans %}{% endblock %}
+{% block title %}{{ parent() }} | {% trans %}Cover{% endtrans %}{% endblock %}
 
 {% block body %}
     <a href="{{ path('app_cover_creation') }}">{% trans %}Add.a.Cover{% endtrans %}</a>

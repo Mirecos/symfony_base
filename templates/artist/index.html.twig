@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% trans %}Artist{% endtrans %}{% endblock %}
+{% block title %}{{ parent() }} | {% trans %}Artist{% endtrans %}{% endblock %}
 
 {% block body %}
 <a href="{{ path('app_artist_creation') }}">{% trans %}Add.an.Artist{% endtrans %}</a>

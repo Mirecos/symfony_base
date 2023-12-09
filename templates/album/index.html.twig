@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% trans %}Artist{% endtrans %}{% endblock %}
+{% block title %}{{ parent() }} | {% trans %}Album{% endtrans %}{% endblock %}
 
 {% block body %}
 <a href="{{ path('app_album_creation') }}">{% trans %}Add.an.Album{% endtrans %}</a>
-<div class="d-flex flex-row flex-wrap justify-content-around m-4">
+<div class="d-flex flex-row flex-wrap m-4" style="justify-content: space-evenly;">
         {% for album in albums %}
             <div class="card text-dark bg-dark" style="width:15%; margin-bottom:12px;">
                 <img class="card-img-top " style="width:100%; margin:auto; " src={{album.cover.link}} alt="Card image cap">
@@ -12,7 +12,7 @@
                     <p class="card-text" style="color:gray;">{{album.name}}</p>
                     <p class="card-text" style="color:gray;">{% trans %}from{% endtrans %} {{album.artist.name}}</p>
                     {% if album.status.value == "Available" %}
-                        <div style="color:green;">
+                    <div style="color:green;">
                         {% trans %}Available{% endtrans %}
                         <span class="material-symbols-outlined">
                         done

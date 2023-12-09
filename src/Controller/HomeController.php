@@ -13,6 +13,7 @@ class HomeController extends AbstractController
     #[Route('/{_locale}/home', name: 'app_home', requirements:['_locale'=>'en|fr'])]
     public function index(AlbumRepository $albumRepository): Response
     {
+
         $AvailableCount = 0;
         $NotAvailableCount = 0;
         $IncomingCount = 0;

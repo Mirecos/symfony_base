@@ -14,7 +14,7 @@ class ArtistFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $Artists = [
-            ['XXXTentafion', ["?", "Look_at_me"] ],
+            ['XXXTentacion', ["?", "Look_at_me"] ],
             ['Lil baguette', [] ],
             ['Hooba Booba', ["GLAIVE"] ]
         ];
