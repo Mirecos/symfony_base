@@ -18,7 +18,6 @@ class AlbumFixtures extends Fixture implements DependentFixtureInterface
         return [
             StyleFixtures::class,
             ArtistFixtures::class,
-            FanFixtures::class,
             CoverFixtures::class
         ];
     }
@@ -26,13 +25,13 @@ class AlbumFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $Albums = [
-            ["Look at me", "Rock", "XXXTentacion" ,["JP-47"], AlbumStatus::NotAvailable],
-            ["?", "Rap", "XXXTentacion" ,["Inspecteur gaydget"], AlbumStatus::Available],
+            ["Look at me", "Rock", "XXXTentacion" ,["admin@gmail.com"], AlbumStatus::NotAvailable],
+            ["?", "Rap", "XXXTentacion" ,["admin@gmail.com"], AlbumStatus::Available],
             ["Riot", "Rap", "XXXTentacion", [], AlbumStatus::Available],
-            ["Bad Vibes Forever", "Pop", "XXXTentacion" ,["JP-47"], AlbumStatus::Available],
-            ["SKINS", "Rap", "XXXTentacion" ,["JP-47"], AlbumStatus::Incoming],
-            ["Revenge", "Rock", "XXXTentacion" ,["JP-47"], AlbumStatus::Available],
-            ["17", "Rap", "XXXTentacion" ,["JP-47"], AlbumStatus::Incoming],
+            ["Bad Vibes Forever", "Pop", "XXXTentacion" ,["admin@gmail.com"], AlbumStatus::Available],
+            ["SKINS", "Rap", "XXXTentacion" ,["admin@gmail.com"], AlbumStatus::Incoming],
+            ["Revenge", "Rock", "XXXTentacion" ,[], AlbumStatus::Available],
+            ["17", "Rap", "XXXTentacion" ,[], AlbumStatus::Incoming],
 
         ];
 
@@ -42,10 +41,9 @@ class AlbumFixtures extends Fixture implements DependentFixtureInterface
             $album->setStyle( $this->getReference(StyleFixtures::STYLE_REFERENCE . $albumData[1]) );
             $album->setArtist( $this->getReference(ArtistFixtures::ARTIST_REFERENCE . $albumData[2]) );
             $album->setStatus($albumData[4]);
-            $album->setStatus( $albumData[4] );
             $album->setCover( $this->getReference(CoverFixtures::COVER_REFERENCE . $albumData[0]) );
             foreach($albumData[3] as $key => $user){
-                $album->addFan( $this->getReference(FanFixtures::FAN_REFERENCE . $user));
+                $album->addFan( $this->getReference(UserFixtures::USER_REFERENCE . $user));
             }
             $manager->persist($album);
 

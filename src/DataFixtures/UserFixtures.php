@@ -22,6 +22,7 @@ class UserFixtures extends Fixture
             $user->setEmail($userCredentials[0]);
             $user->setPassword($userCredentials[1]);
             $user->setRoles($userCredentials[2]);
+            $user->setIsSend(true);
             $manager->persist($user);
             $ref = self::USER_REFERENCE . $userCredentials[0];
             $this->addReference($ref, $user);

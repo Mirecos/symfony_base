@@ -2,5 +2,8 @@
 {% block title %}{{ parent() }} | {% trans %}Add.an.Album{% endtrans %}{% endblock %}
  
 {% block body %}
+<div style="width:30%;margin:auto;">
+    <h1>{% trans %}Album{% endtrans %}</h1>
     {{ form(form) }}
+<div>
 {% endblock %}

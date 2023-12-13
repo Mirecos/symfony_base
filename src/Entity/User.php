@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -31,6 +33,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?bool $isSend = null;
+
+    #[ORM\ManyToMany(targetEntity: Album::class, mappedBy: 'Fans')]
+    private Collection $liked;
+
+    public function __construct()
+    {
+        $this->liked = new ArrayCollection();
+    }
+
+    public function like(Album $album)
+    {
+        
+        if($this->liked->contains($album)){
+            $this->removeLiked($album);
+        }else{
+            $this->addLiked($album);
+        }
+    }
 
     public function getId(): ?int
     {
@@ -110,6 +130,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsSend(bool $isSend): static
     {
         $this->isSend = $isSend;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Album>
+     */
+    public function getLiked(): Collection
+    {
+        return $this->liked;
+    }
+
+    public function addLiked(Album $liked): static
+    {
+        if (!$this->liked->contains($liked)) {
+            $this->liked->add($liked);
+            $liked->addFan($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLiked(Album $liked): static
+    {
+        if ($this->liked->removeElement($liked)) {
+            $liked->removeFan($this);
+        }
 
         return $this;
     }

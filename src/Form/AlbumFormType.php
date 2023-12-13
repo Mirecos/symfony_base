@@ -8,6 +8,7 @@ use App\Entity\Cover;
 use App\Entity\Fan;
 use App\Entity\Style;
 
+use App\Entity\User;
 use App\Enum\AlbumStatus;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -30,8 +31,8 @@ class AlbumFormType extends AbstractType
                 'choice_label' => 'name',
             ])
             ->add('fans' , EntityType::class, [
-                'class' =>  Fan::class,
-                'choice_label' => 'username ',
+                'class' =>  User::class,
+                'choice_label' => 'email',
                 'multiple' => true,
             ])
             ->add('artist' , EntityType::class, [

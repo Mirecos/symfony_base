@@ -39,7 +39,7 @@ class CoverController extends AbstractController
             return $this->redirectToRoute('app_cover');
         }
     
-        return $this->render('fan/ajout_fan.html.twig', [
+        return $this->render('cover/ajout_cover.html.twig', [
             'cover' => $cover,
             'form' => $form->createView()
         ]);

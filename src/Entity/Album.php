@@ -30,20 +30,21 @@ class Album
     #[ORM\ManyToOne]
     private ?Style $style = null;
 
-    #[ORM\ManyToMany(targetEntity: Fan::class)]
-    private Collection $fans;
-
     #[ORM\ManyToOne]
     private ?Artist $artist = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Cover $Cover = null;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'liked')]
+    private Collection $Fans;
+
 
     public function __construct()
     {
         $this->musics = new ArrayCollection();
         $this->fans = new ArrayCollection();
+        $this->Fans = new ArrayCollection();
     }
 
 
@@ -107,29 +108,6 @@ class Album
         return $this;
     }
 
-    /**
-     * @return Collection<int, Fan>
-     */
-    public function getFans(): Collection
-    {
-        return $this->fans;
-    }
-
-    public function addFan(Fan $fan): static
-    {
-        if (!$this->fans->contains($fan)) {
-            $this->fans->add($fan);
-        }
-
-        return $this;
-    }
-
-    public function removeFan(Fan $fan): static
-    {
-        $this->fans->removeElement($fan);
-
-        return $this;
-    }
 
     public function getArtist(): ?Artist
     {
@@ -163,6 +141,30 @@ class Album
     public function setCover(?Cover $Cover): static
     {
         $this->Cover = $Cover;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getFans(): Collection
+    {
+        return $this->Fans;
+    }
+
+    public function addFan(User $fan): static
+    {
+        if (!$this->Fans->contains($fan)) {
+            $this->Fans->add($fan);
+        }
+
+        return $this;
+    }
+
+    public function removeFan(User $fan): static
+    {
+        $this->Fans->removeElement($fan);
 
         return $this;
     }

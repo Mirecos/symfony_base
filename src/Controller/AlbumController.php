@@ -13,7 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AlbumController extends AbstractController
 {
-
     #[Route('/{_locale}/album', name: 'app_album', requirements:['_locale'=>'en|fr'])]
     public function index(AlbumRepository $albumRepository): Response
     {
