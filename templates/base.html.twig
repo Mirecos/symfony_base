@@ -64,9 +64,12 @@
                             <a class="nav-link link" href="{{ path('app_logout') }}">{% trans %}Logout{% endtrans %}</a>
                         </li>
                     {% else %}
-                    <li  class="nav-item">
-                        <a class="nav-link link" href="{{ path('app_security') }}">{% trans %}Connect{% endtrans %}</a>
-                    <li>
+                        <li  class="nav-item">
+                            <a class="nav-link link" href="{{ path('app_security') }}">{% trans %}Connect{% endtrans %}</a>
+                        <li>
+                        <li  class="nav-item">
+                            <a class="nav-link link" href="{{ path('app_register') }}">{% trans %}Register{% endtrans %}</a>
+                        <li>
                     {% endif %}
                 </ul>
                 </div>

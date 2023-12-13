@@ -10,8 +10,9 @@
     {% if app.user != null %}
         <h1>You are already connected</h1>
     {% else %}
-
+    
     <form action="{{ path('app_security') }}" method="post" style="display:flex;flex-direction:column;width:20%;height:25%;justify-content: space-around;">
+        <h1 style="margin:auto;">{% trans %}Connect{% endtrans %}</h1>
         <label for="username">Email:</label>
         <input type="text" id="username" name="_username" value="{{ last_username }}">
 
