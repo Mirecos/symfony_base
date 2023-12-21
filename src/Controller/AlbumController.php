@@ -13,6 +13,21 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AlbumController extends AbstractController
 {
+    private AlbumRepository $albumRepository;
+    public function __construct(AlbumRepository $albumRepository){
+        $this->albumRepository=$albumRepository;
+    }
+    #[Route('/{_locale}/album/like/{id}', name: 'app_like', methods: ['GET'], requirements:['_locale'=>'en|fr'])]
+    public function __invoke(string $_locale, string $id): Response
+    {
+        $user = $this->getUser();
+        $album = $this->albumRepository->findBy(array('id' => $id))[0];
+        
+        $this->albumRepository->persist($album, $user);
+
+        return $this->redirectToRoute('app_album');
+    }
+
     #[Route('/{_locale}/album', name: 'app_album', requirements:['_locale'=>'en|fr'])]
     public function index(AlbumRepository $albumRepository): Response
     {

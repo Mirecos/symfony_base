@@ -7,8 +7,13 @@
 {% endblock %}
 
 {% block body %}
-	<a href="{{ path('app_music_creation') }}">{% trans %}Add.a.Music{% endtrans %}</a>
-
+	{% if app.user %}
+		{% if app.user.roles|filter(ro=>ro=="ROLE_ADMIN")|length == 1 %}
+			<a href="{{ path('app_music_creation') }}" style="font-size: 220%;">{% trans %}Add.a.Music{% endtrans %}</a>
+		{% endif %}
+	{% else %}
+		<p>Seul les admins peuvent ajouter des musics</p>
+	{% endif %}
 	<div class="d-flex flex-row flex-wrap m-4" style="justify-content: space-evenly;">
 		{% for music in musics %}
 			<div class="card text-dark" style="width:18%; margin-bottom:12px;background-color:#222222;">

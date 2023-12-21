@@ -7,7 +7,13 @@
 {% endblock %}
 
 {% block body %}
-	<a href="{{ path('app_artist_creation') }}">{% trans %}Add.an.Artist{% endtrans %}</a>
+	{% if app.user %}
+		{% if app.user.roles|filter(ro=>ro=="ROLE_ADMIN")|length == 1 %}
+			<a href="{{ path('app_artist_creation') }}" style="font-size: 220%;">{% trans %}Add.an.Artist{% endtrans %}</a>
+		{% endif %}
+	{% else %}
+			<p>Seul les admins peuvent ajouter des artists</p>
+	{% endif %}
 	<div class="d-flex flex-row flex-wrap m-4" style="justify-content: space-evenly;">
 		{% for artist in artists %}
 			<div class="card text-dark" style="width:15%; margin-bottom:12px;background-color:#222222;">

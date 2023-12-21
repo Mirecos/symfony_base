@@ -4,12 +4,6 @@
 
 {% block body %}
 <div style="">
-    <p>
-        FAIRE LE BOUTON LIKE AU SECOURS
-    </p>
-    <p>
-        To do : - Redirect apres register ? - userController - page accessdenied
-    </p>
     <div style="width:100%;display:flex;justify-content:space-evenly;padding-top:20px;padding-bottom:20px;background-color:#222222;">
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <h1>{% trans %}Hello{% endtrans %} {{ app.user.email }}! ✅</h1>

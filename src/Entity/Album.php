@@ -168,4 +168,12 @@ class Album
 
         return $this;
     }
+
+    public function hasFan(User $fan): bool 
+    {
+        if($this->Fans->contains($fan)){
+            return true;
+        }
+        return false;
+    }
 }

@@ -36,6 +36,16 @@ security:
     access_control:
         - { path: ^/en/users, roles: ROLE_ADMIN }
         - { path: ^/fr/users, roles: ROLE_ADMIN }
+        - { path: ^/en/album/creation, roles: ROLE_ADMIN }
+        - { path: ^/fr/album/creation, roles: ROLE_ADMIN }
+        - { path: ^/en/artist/creation, roles: ROLE_ADMIN }
+        - { path: ^/fr/artist/creation, roles: ROLE_ADMIN }
+        - { path: ^/en/music/creation, roles: ROLE_ADMIN }
+        - { path: ^/fr/music/creation, roles: ROLE_ADMIN }
+        - { path: ^/en/style/creation, roles: ROLE_ADMIN }
+        - { path: ^/fr/style/creation, roles: ROLE_ADMIN }
+        - { path: ^/en/en/cover, roles: ROLE_ADMIN }
+        - { path: ^/fr/en/cover, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

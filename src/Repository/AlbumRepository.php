@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Album;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,6 +20,17 @@ class AlbumRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Album::class);
+    }
+
+    public function persist(Album $album, User $user){
+        if($album->hasFan($user)){
+            $album->removeFan($user);
+        }else{
+            $album->addFan($user);
+        }
+
+        $this->_em->persist($album);
+        $this->_em->flush();
     }
 
 //    /**

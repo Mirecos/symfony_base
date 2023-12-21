@@ -44,12 +44,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function like(Album $album)
     {
-        
         if($this->liked->contains($album)){
             $this->removeLiked($album);
+            var_dump("remove");
         }else{
             $this->addLiked($album);
+            var_dump("add");
         }
+        return $album;
     }
 
     public function getId(): ?int
