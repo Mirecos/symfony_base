@@ -1,77 +1,78 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} | {% trans %}Album{% endtrans %}{% endblock %}
+{% block title %}
+	{{ parent() }}
+	|
+	{% trans %}Album{% endtrans %}
+{% endblock %}
 
 {% block body %}
-<style>
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 1,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
-}
-</style>
-{% if app.user %}
-    {% if app.user.roles|filter(ro=>ro=="ROLE_ADMIN")|length == 1 %}
-        <a href="{{ path('app_album_creation') }}" style="font-size: 220%;">{% trans %}Add.an.Album{% endtrans %}</a>
-    {% endif %}
-{% else %}
-    <p>Seul les admins peuvent ajouter des albums</p>
-{% endif %}
+	<style>
+		.material-symbols-outlined {
+			font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24
+		}
+	</style>
+	{% if app.user %}
+		{% if (is_granted('ROLE_ADMIN')) %}
+			<a href="{{ path('app_album_creation') }}" style="font-size: 220%;">{% trans %}Add.an.Album{% endtrans %}</a>
+		{% endif %}
+	{% else %}
+		<p>Seul les admins peuvent ajouter des albums</p>
+	{% endif %}
 
 
-<div class="d-flex flex-row flex-wrap m-4" style="justify-content: space-evenly;">
-        {% for album in albums %}
-            <div class="card text-dark" style="width:15%; margin-bottom:12px;background-color:#222222;">
-                <img class="card-img-top " style="width:100%; margin:auto; " src={{album.cover.link}} alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text" style="color:gray;">{{album.name}}</p>
-                    <p class="card-text" style="color:gray;">{% trans %}from{% endtrans %} {{album.artist.name}}</p>
+	<div class="d-flex flex-row flex-wrap m-4" style="justify-content: space-evenly;">
+		{% for album in albums %}
+			<div class="card text-dark" style="width:15%; margin-bottom:12px;background-color:#222222;">
+				<img class="card-img-top " style="width:100%; margin:auto; " src={{album.cover.link}} alt="Card image cap">
+				<div class="card-body">
+					<p class="card-text" style="color:gray;">{{album.name}}</p>
+					<p class="card-text" style="color:gray;">{% trans %}from{% endtrans %}
+						{{album.artist.name}}</p>
 
-                    <div style="display:flex;flex-direction:row;">
-                        {% if album.status.value == "Available" %}
-                        <div style="color:green;flex-grow:3;display:flex;justify-content:center;">
-                            <span class="material-symbols-outlined">
-                            done
-                            </span>
-                            {% trans %}Available{% endtrans %}
-                        </div>
-                        {% elseif album.status.value == "Not Available" %}
-                        <div style="color:red;flex-grow:3;display:flex;justify-content:center;">
-                            <span class="material-symbols-outlined">
-                            close
-                            </span>
-                            {% trans %}Not available{% endtrans %}
-                        </div>
-                        {% elseif album.status.value == "Incoming" %}
-                        <div style="color:orange;flex-grow:3;display:flex;justify-content:center;">
-                            <span class="material-symbols-outlined">
-                            Schedule
-                            </span>
-                            {% trans %}Incoming{% endtrans %}
-                        </div>
-                        {% endif %}
+					<div style="display:flex;flex-direction:row;">
+						{% if album.status.value == "Available" %}
+							<div style="color:green;">
+								{% trans %}Available{% endtrans %}
+								<span class="material-symbols-outlined">
+									done
+								</span>
+							</div>
+						{% elseif album.status.value == "Not Available" %}
+							<div style="color:red;">
+								{% trans %}Not available{% endtrans %}
+								<span class="material-symbols-outlined">
+									close
+								</span>
+							</div>
+						{% elseif album.status.value == "Incoming" %}
+							<div style="color:orange;">
+								{% trans %}Incoming{% endtrans %}
+								<span class="material-symbols-outlined">
+									Schedule
+								</span>
+							</div>
+						{% endif %}
 
-                        {% if app.user  %}
-                            <a href="{{ path('app_like',{'id': album.id }) }}">
-                                {% if album in app.user.liked  %}
-                                    <span class="material-symbols-outlined" style="color:red;">
-                                    favorite
-                                    </span>
-                                {% else %}
-                                    <span class="material-symbols-outlined" style="color:gray;">
-                                    favorite
-                                    </span>
-                                {% endif %}
-                            </a>
-                        {% endif %}
-                    </div>
+						{% if app.user  %}
+							<a href="{{ path('app_like',{'id': album.id }) }}" style="margin-left:auto;">
+								{% if album in app.user.liked  %}
+									<span class="material-symbols-outlined" style="color:red;">
+										favorite
+									</span>
+								{% else %}
+									<span class="material-symbols-outlined" style="color:gray;">
+										favorite
+									</span>
+								{% endif %}
+							</a>
+						{% endif %}
+					</div>
 
 
-                </div>
-            </div>
-        {% endfor %}
-</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 
 {% endblock %}

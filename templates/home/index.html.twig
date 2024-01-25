@@ -1,73 +1,85 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} | {% trans %}Home{% endtrans %}{% endblock %}
+{% block title %}
+	{{ parent() }}
+	|
+	{% trans %}Home{% endtrans %}
+{% endblock %}
 
 {% block body %}
-<div style="">
-    <div style="width:100%;display:flex;justify-content:space-evenly;padding-top:20px;padding-bottom:20px;background-color:#222222;">
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <h1>{% trans %}Hello{% endtrans %} {{ app.user.email }}! ✅</h1>
-        {% else %}
-            <h1>{% trans %}connected.message{% endtrans %}<a  href="{{ path('app_security') }}"> {% trans %}here{% endtrans %}</a> ! </h1>
-        {% endif %}
-    </div>
-    
+	<div style="">
+		<div style="width:100%;display:flex;justify-content:space-evenly;padding-top:20px;padding-bottom:20px;background-color:#222222;">
+			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+				<h1>{% trans %}Hello{% endtrans %}
+					{{ app.user.email }}! ✅</h1>
+			{% else %}
+				<h1>{% trans %}connected.message{% endtrans %}<a href="{{ path('app_security') }}">
+						{% trans %}here{% endtrans %}</a>
+					!
+				</h1>
+			{% endif %}
+		</div>
 
-    <div style="margin-top:15px;margin-top:15px;">
-        <h2>{% trans %}Statistic.header{% endtrans %}</h2>
-        <div style="width:100%;display:flex;flex-direction:row;justify-content:space-evenly;margin-top:1%;">
-            <div style="padding:1%;background-color:#222222;border-radius:4%;">
-                <h5>{% trans %}nb.album.disponible{% endtrans %}</h5>
-                <h3 style="display:flex;justify-content:center;font-weight: bold;">{{ availableCount }}</h3>
-                <h3 style="display:flex;justify-content:center;font-weight: bold;">{% trans %}equiv{% endtrans %} {{ (availableCount / totalCount * 100) | number_format(0) }}%</h3>
-            </div>
-            <div style="padding:1%;background-color:#222222;border-radius:4%;">
-                <h5>{% trans %}nb.album.not.disponible{% endtrans %}</h5>
-                <h3 style="display:flex;justify-content:center;font-weight: bold;">{{ notAvailableCount }}</h3>
-                <h3 style="display:flex;justify-content:center;font-weight: bold;">{% trans %}equiv{% endtrans %} {{ (notAvailableCount / totalCount * 100) | number_format(0) }}%</h3>
-            </div>
-            <div style="padding:1%;background-color:#222222;border-radius:4%;">
-                <h5>{% trans %}nb.album.soon.disponible{% endtrans %}</h5>
-                <h3 style="display:flex;justify-content:center;font-weight: bold;">{{ incomingCount }}</h3>
-                <h3 style="display:flex;justify-content:center;font-weight: bold;">{% trans %}equiv{% endtrans %} {{ (incomingCount / totalCount * 100) | number_format(0)}}%</h3>
-            </div>
-        </div>
-    </div>
 
-    <h2 style="margin-top:15px;margin-top:15px;">{% trans %}last.albums{% endtrans %}</h2>
-    <div class="d-flex flex-row flex-wrap justify-content-around m-4">
-        
-        {% for album in lastAlbums %}
-            <div class="card text-dark" style="width:15%; margin-bottom:12px;background-color:#222222;">
-                <img class="card-img-top " style="width:100%; margin:auto; " src={{album.cover.link}} alt="Card image cap">
-                <div class="card-body" style="color:gray;">
-                    <p class="card-text">{{album.name}}</p>
-                    <p class="card-text">{% trans %}from{% endtrans %} {{album.artist.name}}</p>
-                                        {% if album.status.value == "Available" %}
-                    <div style="color:green;">
-                        {% trans %}Available{% endtrans %}
-                        <span class="material-symbols-outlined">
-                        done
-                        </span>
-                    </div>
-                    {% elseif album.status.value == "Not Available" %}
-                    <div style="color:red;">
-                        {% trans %}Not available{% endtrans %}
-                        <span class="material-symbols-outlined">
-                        close
-                        </span>
-                    </div>
-                    {% elseif album.status.value == "Incoming" %}
-                    <div style="color:orange;">
-                        {% trans %}Incoming{% endtrans %}
-                        <span class="material-symbols-outlined">
-                        Schedule
-                        </span>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-</div>
+		<div style="margin-top:15px;margin-top:15px;">
+			<h2>{% trans %}Statistic.header{% endtrans %}</h2>
+			<div style="width:100%;display:flex;flex-direction:row;justify-content:space-evenly;margin-top:1%;">
+				<div style="padding:1%;background-color:#222222;border-radius:4%;">
+					<h5>{% trans %}nb.album.disponible{% endtrans %}</h5>
+					<h3 style="display:flex;justify-content:center;font-weight: bold;">{{ availableCount }}</h3>
+					<h3 style="display:flex;justify-content:center;font-weight: bold;">{% trans %}equiv{% endtrans %}
+						{{ (availableCount / totalCount * 100) | number_format(0) }}%</h3>
+				</div>
+				<div style="padding:1%;background-color:#222222;border-radius:4%;">
+					<h5>{% trans %}nb.album.not.disponible{% endtrans %}</h5>
+					<h3 style="display:flex;justify-content:center;font-weight: bold;">{{ notAvailableCount }}</h3>
+					<h3 style="display:flex;justify-content:center;font-weight: bold;">{% trans %}equiv{% endtrans %}
+						{{ (notAvailableCount / totalCount * 100) | number_format(0) }}%</h3>
+				</div>
+				<div style="padding:1%;background-color:#222222;border-radius:4%;">
+					<h5>{% trans %}nb.album.soon.disponible{% endtrans %}</h5>
+					<h3 style="display:flex;justify-content:center;font-weight: bold;">{{ incomingCount }}</h3>
+					<h3 style="display:flex;justify-content:center;font-weight: bold;">{% trans %}equiv{% endtrans %}
+						{{ (incomingCount / totalCount * 100) | number_format(0)}}%</h3>
+				</div>
+			</div>
+		</div>
+
+		<h2 style="margin-top:15px;margin-top:15px;">{% trans %}last.albums{% endtrans %}</h2>
+		<div class="d-flex flex-row flex-wrap justify-content-around m-4">
+
+			{% for album in lastAlbums %}
+				<div class="card text-dark" style="width:15%; margin-bottom:12px;background-color:#222222;">
+					<img class="card-img-top " style="width:100%; margin:auto; " src={{album.cover.link}} alt="Card image cap">
+					<div class="card-body" style="color:gray;">
+						<p class="card-text">{{album.name}}</p>
+						<p class="card-text">{% trans %}from{% endtrans %}
+							{{album.artist.name}}</p>
+						{% if album.status.value == "Available" %}
+							<div style="color:green;">
+								{% trans %}Available{% endtrans %}
+								<span class="material-symbols-outlined">
+									done
+								</span>
+							</div>
+						{% elseif album.status.value == "Not Available" %}
+							<div style="color:red;">
+								{% trans %}Not available{% endtrans %}
+								<span class="material-symbols-outlined">
+									close
+								</span>
+							</div>
+						{% elseif album.status.value == "Incoming" %}
+							<div style="color:orange;">
+								{% trans %}Incoming{% endtrans %}
+								<span class="material-symbols-outlined">
+									Schedule
+								</span>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}

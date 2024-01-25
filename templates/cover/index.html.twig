@@ -4,7 +4,7 @@
 
 {% block body %}
     {% if app.user %}
-        {% if app.user.roles|filter(ro=>ro=="ROLE_ADMIN")|length == 1 %}
+        {% if (is_granted('ROLE_ADMIN')) %}
             <a href="{{ path('app_cover_creation') }}" style="font-size: 220%;">{% trans %}Add.a.Cover{% endtrans %}</a>
         {% endif %}
     {% else %}
