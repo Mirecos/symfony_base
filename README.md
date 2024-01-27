@@ -81,6 +81,11 @@ DATABASE_URL="mysql://<username>:<password>@localhost:3306/<dbName>?serverVersio
 
 ![Exemple](./assetsReadMe/env.png)
 
+php bin/console d:d:c
+php bin/console doctrine:migrations:diff
+php bin/console doctrine:migrations:migrate 
+
+
 Finalement, on observe notre site sur navigateur via le lien :
 
 ```
