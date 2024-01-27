@@ -6,6 +6,9 @@ Les données porteront sur le thème de la musique, en suivant les associations 
 
 ## Entité-relation
 
+Schéma de la base de données.
+
+(Il manque quelques trucs, mais c'est plus ou moins ca)
 ![alt text](./assetsReadMe/dark.png)
 
 ## Barème
@@ -44,11 +47,42 @@ La page d'accueil affiche les statistiques sur la disponibilités des albums, et
 
 ### Gestion d'Évènement
 
-
+Il y a un listener sur l'event du login d'un client. Lorsqu'un client so connecte, un booléen appellé "isSend" dans la base de données passe a "True".
 
 ## Installation
 
-La première étape consiste a installer XAMPP, afin d'avoir un serveur WAMP, (bon je vais pas détailler ca quand même).
+Tout d'abord, on installe xampp et composer:
+
+XAMPP : [https://www.apachefriends.org/fr/index.html](https://www.apachefriends.org/fr/index.html)
+</br>
+COMPOSER : [https://getcomposer.org/download/](https://getcomposer.org/download/)
+
+Un fois xampp installé et lancé, on lance le serveur apache et mysql :
 
 ![Alt text](./assetsReadMe/xamp.png)
 
+Ensuite, on clone le projet dans le dossier htdocs de xamp. 
+</br>
+Il se trouve dans le répertoire d'installation de xamp sous : `xampp/htdocs`
+
+```
+$ git clone https://github.com/Mirecos/symfony_base
+```
+On peut maintenant installer les dépendances grâce a :
+```
+$ composer install
+```
+Enfin, on crée un fichier .env.local dans lequel on saisi le lien de notre database. 
+Les détails peuvent différer selon les identifiants de connexions a mysql et la base de donnée que l'on veut utiliser :
+
+``
+DATABASE_URL="mysql://<username>:<password>@localhost:3306/<dbName>?serverVersion=mariadb-10.4.32"
+``
+
+![Exemple](./assetsReadMe/env.png)
+
+Finalement, on observe notre site sur navigateur via le lien :
+
+```
+http://localhost/symfony_base/public/en/home
+```
