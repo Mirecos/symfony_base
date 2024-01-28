@@ -61,9 +61,9 @@ Un fois xampp installé et lancé, on lance le serveur apache et mysql :
 
 ![Alt text](./assetsReadMe/xamp.png)
 
-Ensuite, on clone le projet dans le dossier htdocs de xamp. 
+Ensuite, on clone le projet dans le dossier htdocs de xampp. 
 </br>
-Il se trouve dans le répertoire d'installation de xamp sous : `xampp/htdocs`
+Il se trouve dans le répertoire d'installation de xampp sous : `xampp/htdocs`
 
 ```
 $ git clone https://github.com/Mirecos/symfony_base
@@ -72,19 +72,24 @@ On peut maintenant installer les dépendances grâce a :
 ```
 $ composer install
 ```
-Enfin, on crée un fichier .env.local dans lequel on saisi le lien de notre database. 
+Enfin, on crée un fichier '.env' dans lequel on saisi le lien de notre database. 
 Les détails peuvent différer selon les identifiants de connexions a mysql et la base de donnée que l'on veut utiliser :
 
-``
+```
 DATABASE_URL="mysql://<username>:<password>@localhost:3306/<dbName>?serverVersion=mariadb-10.4.32"
-``
+MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0
+```
+L'URL de la DB peut être ajusté selon la version en local.
 
-![Exemple](./assetsReadMe/env.png)
+![Exemple](./assetsReadMe/envFile.png)
 
-php bin/console d:d:c
-php bin/console doctrine:migrations:diff
-php bin/console doctrine:migrations:migrate 
-
+Enfin on exécute les commandes suivantes dans le terminal a l'emplacement du projet :
+```
+$ php bin/console d:d:c
+$ php bin/console doctrine:migrations:diff
+$ php bin/console doctrine:migrations:migrate 
+$ php bin/console doctrine:fixtures:load
+```
 
 Finalement, on observe notre site sur navigateur via le lien :
 
