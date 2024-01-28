@@ -1,5 +1,7 @@
 # Projet Symfony
 
+UNE VIDEO DE DEMO EST DISPONIBLE A LA RACINE DU PROJET.
+
 ## Thème choisi
 
 Les données porteront sur le thème de la musique, en suivant les associations décrites dans la partie suivant. Le thème est évidemment inspiré de spotify.
